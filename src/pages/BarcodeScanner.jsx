@@ -7,15 +7,20 @@ const BarcodeScanner = () => {
   const scannerRef = useRef(null);
 
   useEffect(() => {
-    const scanner = new Html5Qrcode(scannerRef.current.id);
-    scanner.start(
-      { facingMode: "environment" },
-      { fps: 10, qrbox: 250 },
-      (decodedText) => setScanResult(decodedText),
-      (err) => console.error(err)
-    );
+    const scanner = new Html5Qrcode("reader");
 
-    return () => scanner.stop();
+    scanner
+      .start(
+        { facingMode: "environment" },
+        { fps: 10, qrbox: 250 },
+        (decodedText) => setScanResult(decodedText),
+        (err) => console.error("Scan error:", err)
+      )
+      .catch((err) => console.error("Start error:", err));
+
+    return () => {
+      scanner.stop().catch((err) => console.error("Stop error:", err));
+    };
   }, []);
 
   return (
