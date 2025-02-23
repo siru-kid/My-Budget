@@ -14,6 +14,12 @@ const Nav = ({ userName }) => {
         <img src={logomark} alt="" height={30} />
         <span>MyBudget</span>
       </NavLink>
+
+      {/* Add a link to the barcode scanner page */}
+      <NavLink to="/barcode" className="nav-link">
+        <span>Scan Barcode</span>
+      </NavLink>
+
       {userName && (
         <Form
           method="post"
@@ -33,4 +39,5 @@ const Nav = ({ userName }) => {
     </nav>
   );
 };
+
 export default Nav;

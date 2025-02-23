@@ -1,5 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+// Import your BarcodePage component
+import BarcodeScanner from "./pages/BarcodeScanner";
+
 // Library
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -52,6 +55,11 @@ const router = createBrowserRouter([
         element: <ExpensesPage />,
         loader: expensesLoader,
         action: expensesAction,
+        errorElement: <Error />,
+      },
+      {
+        path: "barcode",
+        element: <BarcodeScanner />, // Add the BarcodePage route here
         errorElement: <Error />,
       },
       {
